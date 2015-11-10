@@ -15,6 +15,14 @@ typeset -U path
 export RSYNC_RSH=ssh
 export CVS_RSH=ssh
 
-for conf in $HOME/.zsh.d/.conf.d/*.conf; do
+for conf in $HOME/.zsh.d/conf.d/*.zsh; do
     source ${conf};
 done
+
+if [[ $(uname) == Darwin  ]]; then
+    # OSX
+    source ~/.zsh.d/platform/darwin.zsh
+elif [[ $(uname) == Linux  ]]; then
+    # ubuntu
+    source ~/.zsh.d/platform/linux.zsh
+fi
