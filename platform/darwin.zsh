@@ -12,8 +12,6 @@ function title {
 # -------------------------------------
 alias gvim="open -a MacVim.app"
 
-
-
 # -------------------------------------
 # Pyenvの設定
 # -------------------------------------
@@ -23,9 +21,9 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
-function ww() {
-    cd ~/Develop/workspace/$1
-}
+# -------------------------------------
+# Rbenvの設定
+# -------------------------------------
 export PATH="$HOME/.rbenv/bin:$PATH"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
@@ -34,12 +32,17 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 # PostgreSQL設定（DBの置き場所）
 export PGDATA=/usr/local/var/postgres
 
+# -------------------------------------
+# Mac用のエイリアス
+# -------------------------------------
 alias start-postgres="postgres -D /usr/local/var/postgres"
 function findword() {
     grep -r $1 ./
 }
 
-
+# -------------------------------------
+# その他設定
+# -------------------------------------
 
 # portの設定
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
@@ -48,3 +51,4 @@ export MANPATH=/opt/local/share/man:/opt/local/man:$MANPATH
 
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 export NODEBREW_ROOT=/usr/local/var/nodebrew
+
