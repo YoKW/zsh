@@ -6,6 +6,12 @@ function title {
     echo -ne "\033]0;"$*"\007"
 }
 
+# エディタ
+export EDITOR=/usr/local/bin/vim
+
+# ページャ
+export PAGER=/usr/local/bin/vimpager
+export MANPAGER=/usr/local/bin/vimpager
 
 # -------------------------------------
 # macvimの設定
