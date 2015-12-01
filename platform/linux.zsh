@@ -14,6 +14,7 @@ export PIP_RESPECT_VIRTUALENV=true
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
+alias ls='ls --color=auto'
 alias runserver='python manage.py runserver'
 alias wdiff='git diff --color-words'
 alias rmpyc='find . -name "*.pyc" -exec rm -rf {} \;'
