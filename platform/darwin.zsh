@@ -58,3 +58,6 @@ export MANPATH=/opt/local/share/man:/opt/local/man:$MANPATH
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 export NODEBREW_ROOT=/usr/local/var/nodebrew
 
+NODE_PATH=$PATH://usr/local/node-v0.10.0/lib/node_modules
+export NODE_PATH
+
