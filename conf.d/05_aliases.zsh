@@ -8,7 +8,8 @@ alias grep="grep --color -n -I --exclude='*.svn-*' --exclude='entries' --exclude
 # ls
 export LSCOLORS=xefxcxdxbxegedabagacad
 alias ls="ls -G" # color for darwin
-alias l="ls -la"
+alias l="ls -l"
+alias ll="ls -la"
 alias la="ls -a"
 alias l1="ls -1"
 
