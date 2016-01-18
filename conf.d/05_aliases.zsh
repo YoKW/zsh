@@ -22,7 +22,10 @@ alias tree="tree -NC" # N: 文字化け対策, C:色をつける
 
 alias freeze="pip freeze"
 alias runserver="python manage.py runserver"
-
+function reset_db() {
+  python manage.py flush --noinput
+  python manage.py loaddata **/fixtures/*.json
+}
 
 # -------------------------------------
 # その他
