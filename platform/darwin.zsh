@@ -61,3 +61,6 @@ export NODEBREW_ROOT=/usr/local/var/nodebrew
 NODE_PATH=$PATH://usr/local/node-v0.10.0/lib/node_modules
 export NODE_PATH
 
+# goの設定
+export GOPATH=$HOME/.go
+
