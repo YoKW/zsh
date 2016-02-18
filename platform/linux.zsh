@@ -22,13 +22,15 @@ alias rmswp='find . -name "*.swp" -exec rm -rf {} \;'
 alias rmun='find . -name "*.*~" -exec rm -rf {} \;'
 alias findword="find ./ -type f -print | xargs grep '' | grep$1"
 
-alias mkbranch='~/mkbranch.sh$1'
 alias gitchangelog='git log --date=short --pretty=format:"%ad %an <%ae>%n%n%s%n%b "'
 alias mntsharedfolder='~/mntsharedfolder.sh'
 alias ww='workon'
 alias gith="git checkout"
 alias test="python manage.py test"
 alias x="xmodmap ~/.Xmodmap"
+
+mkb(){~/mkbranch.sh feat/#$1}
+mkbf(){~/mkbranch.sh fix/#$1}
 
 case $TERM in
   xterm*)
