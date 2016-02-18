@@ -10,8 +10,8 @@ function title {
 export EDITOR=/usr/local/bin/vim
 
 # ページャ
-export PAGER=/usr/local/bin/vimpager
-export MANPAGER=/usr/local/bin/vimpager
+# export PAGER=/usr/local/bin/vimpager
+# export MANPAGER=/usr/local/bin/vimpager
 
 # -------------------------------------
 # macvimの設定
@@ -61,3 +61,6 @@ export NODEBREW_ROOT=/usr/local/var/nodebrew
 NODE_PATH=$PATH://usr/local/node-v0.10.0/lib/node_modules
 export NODE_PATH
 
+# goの設定
+export GOPATH=$HOME/.go
+export PATH=$PATH:$GOPATH/bin
