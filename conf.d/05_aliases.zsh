@@ -34,3 +34,6 @@ function reset_db() {
 # cdしたあとで、自動的に ls する
 function chpwd() { ls -1 }
 
+# 空のディレクトリに.gitkeepを追加する
+alias gitkeep="find . -name .git -prune -o -type d -empty -exec touch {}/.gitkeep \;"
+
