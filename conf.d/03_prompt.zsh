@@ -43,6 +43,23 @@ add-zsh-hook preexec left_down_prompt_preexec
 # end vi mode
 
 
+# begin virtualenv
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+function virtualenv_prompt_info() {
+    if [ -n "$VIRTUAL_ENV" ]; then
+        if [ -f "$VIRTUAL_ENV/__name__" ]; then
+            local name=`cat $VIRTUAL_ENV/__name__`
+        elif [ `basename $VIRTUAL_ENV` = "__" ]; then
+            local name=$(basename $(dirname $VIRTUAL_ENV))
+        else
+            local name=$(basename $VIRTUAL_ENV)
+        fi
+        echo "($name) "
+    fi
+}
+# end virtualenv
+
+
 OK="SUCCESS "
 NG="FAILURE "
 
@@ -61,15 +78,14 @@ function zle-keymap-select zle-line-init zle-line-finish
             ;;
     esac
     PROMPT=""
+    PROMPT+="\$(virtualenv_prompt_info)"
     PROMPT+="%(?.%F{green}$OK%f.%F{red}$NG%f) "
-    # PROMPT+="%F{blue}%~%f"
     PROMPT+="%K{blue}%~%k"
     PROMPT+="\$(vcs_prompt_info)"
     PROMPT+="
     "
     PROMPT+="%{$terminfo_down_sc$PROMPT_2$terminfo[rc]%}"
     PROMPT+="%% "
-    #PROMPT+="%(?.%{${fg[green]}%}.%{${fg[red]}%})${MY_PROMPT:-[%n]}%{${reset_color}%}%# "
     RPROMPT="[%*]"
     zle reset-prompt
 }
