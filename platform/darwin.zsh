@@ -45,6 +45,10 @@ alias start-postgres="postgres -D /usr/local/var/postgres"
 function findword() {
     grep -r $1 ./
 }
+function mkpdf() {
+    platex $1
+    dvipdfmx $1
+}
 
 # -------------------------------------
 # その他設定
