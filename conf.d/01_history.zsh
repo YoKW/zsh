@@ -5,10 +5,10 @@
 export HISTFILE=${HOME}/.zsh_history
 
 # メモリに保存される履歴の件数
-export HISTSIZE=1000
+export HISTSIZE=10000
 
 # 履歴ファイルに保存される履歴の件数
-export SAVEHIST=10000000
+export SAVEHIST=10000000000
 
 # 直前と同じコマンドをヒストリに追加しない
 # setopt hist_ignore_dups
