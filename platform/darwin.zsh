@@ -10,8 +10,8 @@ function title {
 export EDITOR=/usr/local/bin/vim
 
 # ページャ
-# export PAGER=/usr/local/bin/vimpager
-# export MANPAGER=/usr/local/bin/vimpager
+export PAGER=/usr/local/bin/vimpager
+export MANPAGER=/usr/local/bin/vimpager
 
 # -------------------------------------
 # macvimの設定
