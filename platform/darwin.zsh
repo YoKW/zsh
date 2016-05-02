@@ -33,6 +33,13 @@ eval "$(pyenv virtualenv-init -)"
 export PATH="$HOME/.rbenv/bin:$PATH"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
+# -------------------------------------
+# phpenvの設定
+# -------------------------------------
+export PATH="$HOME/.phpenv/bin:$PATH"
+if which phpenv > /dev/null; then eval "$(phpenv init -)"; fi
+
+
 
 
 # PostgreSQL設定（DBの置き場所）
