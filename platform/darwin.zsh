@@ -19,7 +19,7 @@ export MANPAGER=/usr/local/bin/vimpager
 alias gvim="open -a MacVim.app"
 
 # -------------------------------------
-# Pyenvの設定
+# pyenvの設定
 # -------------------------------------
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 export PYENV_ROOT="$HOME/.pyenv"
@@ -28,7 +28,7 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 # -------------------------------------
-# Rbenvの設定
+# rbenvの設定
 # -------------------------------------
 export PATH="$HOME/.rbenv/bin:$PATH"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
