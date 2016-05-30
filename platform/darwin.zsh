@@ -48,6 +48,7 @@ export PGDATA=/usr/local/var/postgres
 # Mac用のエイリアス
 # -------------------------------------
 alias start-postgres="postgres -D /usr/local/var/postgres"
+alias g++="g++ -std=c++11"
 function findword() {
     grep -r $1 ./
 }
