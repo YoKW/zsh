@@ -30,18 +30,36 @@ function vcs_prompt_info() {
 }
 # end VCS
 
-OK="SUCCESS "
-NG="FAILURE "
+# begin virtualenv
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+function virtualenv_prompt_info() {
+    if [ -n "$VIRTUAL_ENV" ]; then
+        if [ -f "$VIRTUAL_ENV/__name__" ]; then
+            local name=`cat $VIRTUAL_ENV/__name__`
+        elif [ `basename $VIRTUAL_ENV` = "__" ]; then
+            local name=$(basename $(dirname $VIRTUAL_ENV))
+        else
+            local name=$(basename $VIRTUAL_ENV)
+        fi
+        echo "($name) "
+    fi
+}
+# end virtualenv
+
+# OK="SUCCESS "
+# NG="FAILURE "
+OK="[%*]"
+NG="[%*]"
 
 PROMPT=""
 PROMPT+="%(?.%F{green}$OK%f.%F{red}$NG%f) "
+PROMPT+="\$(virtualenv_prompt_info)"
 # PROMPT+="%F{blue}%~%f"
 PROMPT+="%K{blue}%~%k"
 PROMPT+="\$(vcs_prompt_info)"
 PROMPT+="
 "
-PROMPT+="%% "
-
-RPROMPT="[%*]"
+PROMPT+="$ "
+# RPROMPT="[%*]"
 
 
