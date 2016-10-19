@@ -66,11 +66,10 @@ export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 export MANPATH=/opt/local/share/man:/opt/local/man:$MANPATH
 
 
-export PATH=$HOME/.nodebrew/current/bin:$PATH
+export PATH=/usr/local/var/nodebrew/node/v6.6.0/bin:$PATH
 export NODEBREW_ROOT=/usr/local/var/nodebrew
-
-NODE_PATH=$PATH://usr/local/node-v0.10.0/lib/node_modules
-export NODE_PATH
+export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules
+export NODE_PATH=$NODE_PATH:/usr/local/var/nodebrew/node/v6.6.0/lib/node_modules
 
 # goの設定
 export GOPATH=$HOME/.go
