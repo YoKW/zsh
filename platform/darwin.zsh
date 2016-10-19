@@ -57,6 +57,13 @@ function mkpdf() {
     dvipdfmx $1
 }
 
+function kotlinrun() {
+  name=$(echo "$1" | sed s/\.kt//g)
+  kotlinc ${name}.kt -include-runtime -d tmp.jar
+  java -jar tmp.jar ${@:2}
+  rm -f tmp.jar
+}
+
 # -------------------------------------
 # その他設定
 # -------------------------------------
