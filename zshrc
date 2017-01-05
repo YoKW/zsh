@@ -8,6 +8,11 @@ if [[ $(uname) == Darwin  ]]; then
     # OSX
     source ~/.zsh.d/platform/darwin.zsh
 elif [[ $(uname) == Linux  ]]; then
-    # ubuntu
-    source ~/.zsh.d/platform/linux.zsh
+    if [[ -f /.dockerenv ]]; then
+        # docker
+        source ~/.zsh.d/platform/docker.zsh
+    else
+        # ubuntu
+        source ~/.zsh.d/platform/linux.zsh
+    fi
 fi
