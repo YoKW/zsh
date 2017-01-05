@@ -46,12 +46,21 @@ function virtualenv_prompt_info() {
 }
 # end virtualenv
 
+# begin docker
+function docker_prompt_info() {
+    if [[ -f /.dockerenv ]]; then
+        echo "%F{magenta}DOCKER%f "
+    fi
+}
+# end docker
+
 # OK="SUCCESS "
 # NG="FAILURE "
 OK="[%*]"
 NG="[%*]"
 
 PROMPT=""
+PROMPT+="\$(docker_prompt_info)"
 PROMPT+="%(?.%F{green}$OK%f.%F{red}$NG%f) "
 PROMPT+="\$(virtualenv_prompt_info)"
 # PROMPT+="%F{blue}%~%f"
