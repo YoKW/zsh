@@ -53,11 +53,12 @@ function findword() {
     grep -r $1 ./
 }
 function mkpdf() {
-    platex $1
-    dvipdfmx $1
+  name=$(echo "$1" | sed s/\.tex//g)
+  platex ${name:="report"}
+  dvipdfmx ${name:="report"}
 }
 
-function kotlinrun() {
+function runkotlin() {
   name=$(echo "$1" | sed s/\.kt//g)
   kotlinc ${name}.kt -include-runtime -d tmp.jar
   java -jar tmp.jar ${@:2}
