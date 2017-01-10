@@ -32,6 +32,11 @@ alias x="xmodmap ~/.Xmodmap"
 
 mkb(){~/mkbranch.sh feat/#$1}
 mkbf(){~/mkbranch.sh fix/#$1}
+gitresetbranch(){
+  git branch -r --merged develop | grep -v -e master -e develop | sed -e 's%[0-9]*: *%%' | xargs -I% git branch -d -r %
+  git branch --merged develop | grep -vE '^\*|master$|develop$' | sed -e 's%[0-9]*: *%%' | xargs -I % git branch -d %
+  git branch -a
+}
 
 case $TERM in
   xterm*)
