@@ -33,7 +33,28 @@ alias gitdiffcached="git diff --cached"
 alias gitstatus="git status"
 alias test="python manage.py test"
 alias x="xmodmap ~/.Xmodmap"
+alias mkvirtualenv3="mkvirtualenv$1 -p `which python3.5`"
 
+gitcountlines(){
+  if [ "$#" -eq "1" ]; then
+    echo $1
+    git log --author=$1 --numstat --pretty="%H" | awk 'NF==3 {plus+=$1; minus+=$2} END {printf("+%d, -%d\n", plus, minus)}'
+  else
+    echo 'okawara'
+    git log --author='okawara' --numstat --pretty="%H" | awk 'NF==3 {plus+=$1; minus+=$2} END {printf("+%d, -%d\n", plus, minus)}'
+  fi
+}
+gitcountcommits(){
+  if [ "$#" -eq "1" ]; then
+    echo $1
+    git rev-list --count --all --author=$1
+  else
+    echo 'okawara'
+    git rev-list --count --all --author='okawara'
+  fi
+}
+mkb(){~/mkbranch.sh feat/#$1}
+mkbf(){~/mkbranch.sh fix/#$1}
 push(){git push -u origin feat/#$1}
 gitresetbranch(){
   git branch -r --merged develop | grep -v -e master -e develop | sed -e 's%[0-9]*: *%%' | xargs -I% git branch -d -r %
@@ -67,3 +88,6 @@ bindkey ";5C" forward-word
 bindkey ";5D" backward-word
 
 alias pathaddupdir='export PYTHONPATH=../:$PYTHONPATH'
+
+# nodebrew
+export PATH=$HOME/.nodebrew/current/bin:$PATH
