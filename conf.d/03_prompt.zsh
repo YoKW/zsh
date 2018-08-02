@@ -46,6 +46,65 @@ function virtualenv_prompt_info() {
 }
 # end virtualenv
 
+# begin rbenv
+FOUND_RBENV=0
+rbenvdirs=("$HOME/.rbenv" "/usr/local/rbenv" "/opt/rbenv" "/usr/local/opt/rbenv")
+if rbenv_homebrew_path=$(brew --prefix rbenv 2>/dev/null); then
+    rbenvdirs=($rbenv_homebrew_path "${rbenvdirs[@]}")
+    unset rbenv_homebrew_path
+    if [[ $RBENV_ROOT = '' ]]; then
+      RBENV_ROOT="$HOME/.rbenv"
+    fi
+fi
+
+for rbenvdir in "${rbenvdirs[@]}" ; do
+  if [ -d $rbenvdir/bin -a $FOUND_RBENV -eq 0 ] ; then
+    FOUND_RBENV=1
+    if [[ $RBENV_ROOT = '' ]]; then
+      RBENV_ROOT=$rbenvdir
+    fi
+    export RBENV_ROOT
+    export PATH=${rbenvdir}/bin:$PATH
+    eval "$(rbenv init --no-rehash - zsh)"
+
+    alias rubies="rbenv versions"
+    alias gemsets="rbenv gemset list"
+
+    function current_ruby() {
+      echo "$(rbenv version-name)"
+    }
+
+    function current_gemset() {
+      echo "$(rbenv gemset active 2&>/dev/null | sed -e 's/ global//g')"
+    }
+
+    function gems {
+      local rbenv_path=$(rbenv prefix)
+      gem list $@ | sed -E \
+        -e "s/\([0-9a-z, \.]+( .+)?\)/$fg[blue]&$reset_color/g" \
+        -e "s|$(echo $rbenv_path)|$fg[magenta]\$rbenv_path$reset_color|g" \
+        -e "s/$current_ruby@global/$fg[yellow]&$reset_color/g" \
+        -e "s/$current_ruby$current_gemset$/$fg[green]&$reset_color/g"
+    }
+
+    function rbenv_prompt_info() {
+      if [[ -n $(current_gemset) ]] ; then
+        echo "<$(current_ruby)@$(current_gemset)> "
+      else
+        echo "<$(current_ruby)> "
+      fi
+    }
+  fi
+done
+unset rbenvdir
+
+if [ $FOUND_RBENV -eq 0 ] ; then
+  alias rubies='ruby -v'
+  function gemsets() { echo '' }
+  function rbenv_prompt_info() { echo "<$(ruby -v | cut -f-2 -d ' ')> " }
+fi
+# end rbenv
+
 # begin docker
 function docker_prompt_info() {
     if [[ -f /.dockerenv ]]; then
@@ -63,6 +122,7 @@ PROMPT=""
 PROMPT+="\$(docker_prompt_info)"
 PROMPT+="%(?.%F{green}$OK%f.%F{red}$NG%f) "
 PROMPT+="\$(virtualenv_prompt_info)"
+PROMPT+="\$(rbenv_prompt_info)"
 # PROMPT+="%F{blue}%~%f"
 PROMPT+="%K{blue}%~%k"
 PROMPT+="\$(vcs_prompt_info)"

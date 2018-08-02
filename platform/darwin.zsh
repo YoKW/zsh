@@ -32,7 +32,7 @@ eval "$(pyenv virtualenv-init -)"
 # -------------------------------------
 export PATH="$HOME/.rbenv/bin:$PATH"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-export PATH="$HOME/.rbenv/versions/2.2.3/bin:$PATH"
+#export PATH="$HOME/.rbenv/versions/2.2.3/bin:$PATH"
 
 
 # -------------------------------------
